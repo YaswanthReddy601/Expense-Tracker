@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/logo.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 80px;
+            position: fixed;
+            margin-left: 200px;
+        }
+        .options{
+            margin: 200px
+        }
+    </style>
+</head>
+<body>
+    <div class="options">
+        <center>
+            <a href="{{url_for('expense')}}"><button style="height:30px; width:150px; border-radius: 25px; background-color:#80B4D6">Add Expense</button></a><br><br>
+            <a href="{{url_for('all_data')}}"><button style="height:30px; width:150px; border-radius: 25px; background-color:#87C897">Show Data</button></a><br><br>
+            <a href="{{url_for('modefy')}}"><button style="height:30px; width:150px; border-radius: 25px; background-color:#BEEC3C">View / Update profile</button></a><br><br>
+            <a href="{{url_for('logout')}}"><button style="height:30px; width:150px; border-radius: 25px; background-color:#E1635D">Logout</button></a>
+        </center>
+
+
+    </div>
+</body>
+</html>

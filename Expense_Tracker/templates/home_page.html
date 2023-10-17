@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Traker</title>
+
+</head>
+<body>
+    <div class="div1">
+        <h1>Expense</h1>
+    </div>
+    <div class="div2">
+        <h1>Tracker</h1>
+    </div>
+    <div class="button">
+        <a href="{{url_for('login')}}"><button style="background-color:#60B865; border-radius: 12px; font-size:20px"">Log in</button></a>
+        <a href="{{url_for('signup')}}"><button style="background-color:#3498DB; border-radius: 12px; font-size:20px">Sign up</button></a>
+
+    </div>
+
+</body>
+<style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/logo.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .div1{
+            color: #1F3099;
+            margin-top: 220px;
+            margin-left: 200px;
+            font-size:35px
+
+        }
+        .div2{
+            color: #1F3099;
+            margin-top: -40px;
+            margin-left: 380px;
+            font-size:35px
+        }
+        .button{
+            margin-top: 90px;
+            margin-left: 300px;
+            font-size: 20px;
+        }
+    </style>
+</html>

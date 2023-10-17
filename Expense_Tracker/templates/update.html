@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <style>
+        body{
+            background-image: url("{{url_for('static', filename='images/logo.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 80px;
+            position: fixed;
+            margin-left: 200px;
+        }
+        button{
+         margin-left:40px;
+        }
+    </style>
+</head>
+<body>
+  <form method="post" action="{{url_for('modefy')}}">
+      <h2 style="margin-top:150px"> email</h2><input style="border-radius:5px;" type="text" value="{{data.email}}" name="email" readonly>
+      <h2> Name</h2><input style="border-radius:5px;" type="text" value="{{data.name}}" name="name">
+      <h2> salary</h2><input style="border-radius:5px;" type="number" value="{{data.salary}}" name="salary"><br><br>
+      <button type="submit" style="height:30px; width:80px; border-radius: 25px; background-color:#87C897">Update</button>
+  </form><br>
+      <a href="{{url_for('delete')}}"><button style="height:30px; width:80px; border-radius: 25px; background-color:#EE6262">Delete</button></a>
+</body>
+</html>

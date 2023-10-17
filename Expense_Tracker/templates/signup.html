@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+  <style>
+      .flash{
+            color:orange;
+            margin-left:20px
+        }
+      body {
+            background-image: url("{{ url_for('static', filename='images/logo.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin-top: 80px;
+            position: fixed;
+            margin-left: 200px;
+        }
+  </style>
+</head>
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+<main class="form-signin w-100 m-auto"z>
+  <form action="{{url_for('signup')}}" method="post">
+    {% with messages= get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <h5 class="flash">{{message}}</h5>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="form-floating">
+      <input style="width:200px" type="text" class="form-control" name="name" placeholder="Name">
+      <label>Name</label>
+    </div>
+    <div class="form-floating">
+      <input style="width:200px" type="email" class="form-control" name="email", placeholder="email">
+      <label>Email</label>
+    </div>
+    <div class="form-floating">
+      <input style="width:200px" type="password" class="form-control" name="password" placeholder="password">
+      <label>Password</label>
+    </div>
+    <div class="form-floating">
+      <input style="width:200px" type="text" class="form-control" name="salary" placeholder="salary">
+      <label>Salary</label>
+
+    <input style="width:200px" type="submit" class="form-control" placeholder="Submit">
+    <a style="margin-left:30px" href="{{url_for('login')}}">Already registered?</a>
+
+      </div><br><br>
+  </form>
+</main>
+
+
+
+</body>
+</html>
