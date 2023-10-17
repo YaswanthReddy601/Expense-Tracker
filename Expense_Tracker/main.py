@@ -42,14 +42,12 @@ def home():
 def signup():
     try:
         if current_user.email:
-            print("xxxxxxxxxxxxxxxxxx")
             return redirect(url_for("all_data"))
     except:
         data= RegisterForm()
         if request.method == "POST":
             email_ = data.email.data
             user= Authentication.query.filter_by(email=email_).first()
-            print(user)
             if user is not None:
                 flash("Email already registered!")
                 return redirect(url_for("signup"))
@@ -108,8 +106,7 @@ def login():
 
 @app.route("/exp", methods=["POST", "GET"])
 @login_required
-def expense(user_id):
-    print(user_id)
+def expense():
     ex= expenses()
     if request.method == "POST":
         purpose_= ex.purpose.data
@@ -145,7 +142,8 @@ def modefy():
     else:
         return render_template('update.html', data= current_user)
 
-@app.route("/delete")
+@app.route("/del")
+@login_required
 def delete():
     user= Authentication.query.get(current_user.id)
     db.session.delete(user)
