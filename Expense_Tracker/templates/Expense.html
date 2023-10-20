@@ -12,7 +12,7 @@
                 margin-top: 80px;
                 margin-left: 200px;
             }
-            #inputFields{
+            .inputFields{
                 margin-top:350px;
             }
          .exp{
@@ -23,7 +23,16 @@
 </head>
 <body>
     <div>
-        <form id="inputFields" method="post" action="{{url_for('expense')}}">
+        {%if expense: %}
+             <form class="inputFields" method="post" action="/mod/{{expense.id}}">
+                <input style="border-radius: 5px;"  type="text" name="purpose" placeholder="Purpose" value="{{expense.purpose}}" required="required">
+                <input style="border-radius: 5px;" type="text" name="cost" placeholder="Cost" value="{{expense.cost}}" required="required"><br><br>
+                <input  style="height:30px; width:100px; border-radius: 25px; background-color:#87C897" type="submit" name="Update">
+            </form><br>
+                 <a href="{{url_for('all_data')}}"><button style="height:30px; width:100px; border-radius: 25px; background-color:#80B4D6">Back</button></a>
+        {% endif %}
+
+        <form class="inputFields" method="post" action="{{url_for('expense')}}">
             <input style="border-radius: 5px;"  type="text" name="purpose" placeholder="Purpose" required="required">
             <input style="border-radius: 5px;" type="text" name="cost" placeholder="Cost" required="required"><br><br>
             <input  style="height:30px; width:100px; border-radius: 25px; background-color:#87C897" type="submit" name="submit">
