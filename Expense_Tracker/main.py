@@ -36,13 +36,17 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    return render_template('home_page.html')
+    try:
+        if current_user.email:
+            return redirect(url_for("options"))
+    except:
+        return render_template('home_page.html')
 
 @app.route("/signup", methods=['POST', "GET"])
 def signup():
     try:
         if current_user.email:
-            return redirect(url_for("all_data"))
+            return redirect(url_for("options"))
     except:
         data= RegisterForm()
         if request.method == "POST":
@@ -83,6 +87,7 @@ def load_user(user_id):
 def login():
     try:
         if current_user.email:
+            print("a")
             return redirect(url_for("all_data"))
     except:
         login= Login()
@@ -152,6 +157,28 @@ def delete():
     return redirect(url_for('home'))
 
 
+@app.route("/remove/<int:expense_id>")
+@login_required
+def delete_data(expense_id):
+    expense= Data.query.get(expense_id)
+    db.session.delete(expense)
+    db.session.commit()
+    return redirect(url_for("all_data"))
+
+@app.route("/mod/<int:expense_id>", methods=["POST", "GET"])
+@login_required
+def update(expense_id):
+
+    expense = Data.query.get(expense_id)
+    if request.method == "POST":
+        print(request.form.get("purpose"))
+        purpose = request.form.get('purpose')
+        cost = request.form.get("cost")
+        expense.purpose= purpose
+        expense.cost= cost
+        db.session.commit()
+        return redirect(url_for('all_data'))
+    return render_template("Expense.html", expense=expense)
 
 @app.route("/logout")
 def logout():

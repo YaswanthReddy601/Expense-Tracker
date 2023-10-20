@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Data</title>
     <style>
-        .x{
-            margin-bottom: 90px;
-        }
         body {
             background-image: url("{{ url_for('static', filename='images/logo.jpg') }}");
             background-size: cover;
             background-repeat: no-repeat;
             margin-top: 80px;
             position: fixed;
-            margin-left: 200px;
+            margin-left: 150px;
         }
         #extable{
             max-height: 430px; /* Set the maximum height for scrolling */
@@ -28,33 +25,31 @@
 <body>
 
     <h2 style="margin-top:- 50px">Salary: </h2><h2 id="sal">{{salary}}</h2><br><br>
-    <h2 id="credit">Remaining :<h2 id="rem"></h2><br><br>
+    <h2>Spent: </h2><h2 id="total"></h2>
+    <h2 style="margin-left:30px" id="debt">Remaining: </h2><h2 id="rem"></h2><br><br>
     <div id="extable">
-        <table border="1" width="330" bgcolor="#D5F5E3">
+        <table border="1" width="380" bgcolor="#D5F5E3">
             <tbody>
                 <tr>
                     <th>Purpose to spend money</th>
                     <th>Money spent</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
                 </tr>
                 {% for expense in expenses %}
                 <tr>
                     <td>{{expense.purpose}}</td>
                     <td class="money">{{expense.cost}}</td>
+                    <td><a href="/mod/{{expense.id}}"><button style="border-color:#D8EC45">Edit</button></a></td>
+                    <td><a href="/remove/{{expense.id}}"><button style="border-color:#DA4949">Delete</button></a></td>
                 </tr>
                 {% endfor %}
-                <tr>
-                    <td>Total</td>
-                    <td id="total"></td>
-                 </tr>
             </tbody>
         </table>
     </div>
     <br>
-    <table>
-
-    </table>
-    <br>
-    <a class="x" href="{{url_for('options')}}"><button id="Back" style="height:30px; width:60px; border-radius: 25px; background-color:#80B4D6">Back</button></a>
+    <a href="{{url_for('options')}}"><button id="Back" style="height:30px; width:60px; border-radius: 25px; background-color:#80B4D6">Back</button></a>
     <a href="{{url_for('expense')}}" style="margin-left:35px"><button  style="height:30px; width:150px; border-radius: 25px; background-color:#87C897">Add expense</button></a>
     <a href="{{url_for('logout')}}" style="margin-left:33px"><button id="logout" style="height:30px; width:60px; border-radius: 25px; background-color:#E1635D">Logout</button></a>
 </body>
@@ -76,8 +71,8 @@
             document.getElementById("rem").textContent = sala-x;
 
             if(document.getElementById("rem").textContent < 0){
-                document.getElementById("credit").textContent = "You are in credit of ";
-                document.getElementById("credit").style.color= "red"
+                document.getElementById("debt").textContent = "You are in debt of ";
+                document.getElementById("debt").style.color= "red"
                 document.getElementById("rem").style.color= "red"
             }
         }
