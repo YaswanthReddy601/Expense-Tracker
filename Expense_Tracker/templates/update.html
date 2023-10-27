@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-  <form method="post" action="{{}}">
+  <form method="post" action="{{url_for('modefy')}}">
       <h2 style="margin-top:150px"> email</h2><input style="border-radius:5px;" type="text" value="{{data.email}}" name="email" readonly>
       <h2> Name</h2><input style="border-radius:5px;" type="text" value="{{data.name}}" name="name">
       <h2> salary</h2><input style="border-radius:5px;" type="number" value="{{data.salary}}" name="salary"><br><br>
